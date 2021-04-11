@@ -21,6 +21,9 @@ namespace UsingLinq
                 new Product{ProductId = 4, CategoryId = 2, ProductName = "Samsung Telefon", QuantityPerUnit = "4 GB RAM", UnitPrice = 10000, UnitsInStock = 15 },
                 new Product{ProductId = 5, CategoryId = 2, ProductName = "Apple Telefon", QuantityPerUnit = "4 GB RAM", UnitPrice = 8000, UnitsInStock = 8 },
             };
+
+            GetAll(products);
+
             FilterTest(products);
 
             AnyTest(products);
@@ -33,6 +36,16 @@ namespace UsingLinq
 
             ClassicLinqTest(products);
 
+        }
+        private static void GetAll(List<Product> products)
+        {
+            Console.WriteLine("---List of all products:---");
+            var result = from p in products
+                         select new Product { ProductId = p.ProductId, ProductName = p.ProductName, UnitPrice = p.UnitPrice }; 
+            foreach (var product in products)
+            {
+                Console.WriteLine(product.ProductName);
+            }
         }
 
         private static void ClassicLinqTest(List<Product> products)
